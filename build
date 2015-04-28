@@ -1,0 +1,13 @@
+#!/bin/bash
+VAULT_VERSION=0.1.0_linux_amd64
+VAULT_URL=https://dl.bintray.com/mitchellh/vault/vault_${VAULT_VERSION}.zip
+
+DOCKER_VAULT_IMAGE=dontrebootme/vault:${VAULT_VERSION}
+
+echo ${VAULT_URL}
+curl -LOk ${VAULT_URL} \
+  && unzip vault_${VAULT_VERSION}.zip \
+  && docker build --rm=true --no-cache=true --pull=true -t ${DOCKER_VAULT_IMAGE} . \
+  && echo "Now pushing ${DOCKER_VAULT_IMAGE}" \
+  && docker push ${DOCKER_VAULT_IMAGE} \
+  && echo "Done. You may now start up the container."
