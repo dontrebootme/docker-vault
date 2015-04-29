@@ -1,5 +1,5 @@
-FROM scratch
+FROM gliderlabs/alpine
 MAINTAINER Patrick O'Connor <patrick@dontreboot.me>
-ADD vault vault
+ADD vault /usr/local/bin/vault
 EXPOSE 8200
-ENTRYPOINT ["/vault"]
+ENTRYPOINT ["/usr/local/bin/vault"]
